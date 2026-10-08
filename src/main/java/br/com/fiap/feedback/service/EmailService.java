@@ -43,4 +43,15 @@ public class EmailService {
 
         emailClient.beginSend(message);
     }
+
+    public void enviarRelatorioSemanal(String relatorio) {
+
+        EmailMessage message = new EmailMessage()
+                .setSenderAddress(sender)
+                .setToRecipients(recipient)
+                .setSubject("Relatório semanal de feedbacks")
+                .setBodyPlainText(relatorio);
+
+        emailClient.beginSend(message);
+    }
 }
