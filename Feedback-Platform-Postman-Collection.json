@@ -1,0 +1,175 @@
+{
+  "info": {
+    "_postman_id": "6f70d0c1-65aa-4e11-9a3e-1a8c9a4b2026",
+    "name": "Feedback Platform - Azure Functions",
+    "description": "Coleção para testar a API Feedback Platform publicada na Azure. Configure as variáveis baseUrl e functionKey antes de executar. Não compartilhe nem exporte a chave real.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1 - Enviar feedback normal (nota 9)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descricao\": \"Feedback de teste pelo Postman\",\n  \"nota\": 9\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/avaliacao?code={{functionKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "avaliacao"
+          ],
+          "query": [
+            {
+              "key": "code",
+              "value": "{{functionKey}}"
+            }
+          ]
+        },
+        "description": "Deve retornar sucesso e urgência NORMAL."
+      }
+    },
+    {
+      "name": "2 - Enviar feedback crítico (nota 2)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descricao\": \"Teste de alerta crítico pelo Postman\",\n  \"nota\": 2\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/avaliacao?code={{functionKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "avaliacao"
+          ],
+          "query": [
+            {
+              "key": "code",
+              "value": "{{functionKey}}"
+            }
+          ]
+        },
+        "description": "Deve retornar sucesso e urgência CRITICA. Pode disparar um e-mail de alerta real."
+      }
+    },
+    {
+      "name": "3 - Validar nota inválida (nota 15)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descricao\": \"Teste de validação\",\n  \"nota\": 15\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/avaliacao?code={{functionKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "avaliacao"
+          ],
+          "query": [
+            {
+              "key": "code",
+              "value": "{{functionKey}}"
+            }
+          ]
+        },
+        "description": "Deve retornar erro de validação."
+      }
+    },
+    {
+      "name": "4 - Validar descrição vazia",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descricao\": \"\",\n  \"nota\": 8\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/avaliacao?code={{functionKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "avaliacao"
+          ],
+          "query": [
+            {
+              "key": "code",
+              "value": "{{functionKey}}"
+            }
+          ]
+        },
+        "description": "Deve retornar erro de validação."
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://feedback-platform-functions-2026-g9hdefh7gre9hmae.brazilsouth-01.azurewebsites.net",
+      "type": "string"
+    },
+    {
+      "key": "functionKey",
+      "value": "",
+      "type": "string",
+      "description": "Cole aqui a chave atual da Function App. Mantenha o valor local e não compartilhe a coleção com essa variável preenchida."
+    }
+  ]
+}
