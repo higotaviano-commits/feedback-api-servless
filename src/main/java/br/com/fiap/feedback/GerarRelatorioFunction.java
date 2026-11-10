@@ -25,7 +25,7 @@ public class GerarRelatorioFunction {
     public void run(
             @TimerTrigger(
                     name = "timerInfo",
-                    schedule = "0 0 11 * * 1"
+                    schedule = "0 */5 * * * *"
             )
             String timerInfo,
             final ExecutionContext context) {
